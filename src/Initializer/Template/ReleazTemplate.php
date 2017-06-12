@@ -1,7 +1,13 @@
 <?php
 
-namespace Deployer\Initializer\Template;
+/**
+ * Created by PhpStorm.
+ * User: johankladder
+ * Date: 12-6-17
+ * Time: 13:00
+ */
 
+namespace Deployer\Initializer\Template;
 
 class ReleazTemplate extends FrameworkTemplate
 {
@@ -27,8 +33,9 @@ class ReleazTemplate extends FrameworkTemplate
     public function initialize($filePath, $params)
     {
         copy(__DIR__ . '/../../../recipe/releaz.php', $filePath);
-
         copy(__DIR__ . '/../../../recipe/releaz/' . $this->getExample(),
             dirname($filePath) . '/' . $this->getExample());
     }
+
+
 }

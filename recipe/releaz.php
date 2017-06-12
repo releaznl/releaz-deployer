@@ -1,14 +1,23 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: johankladder
+ * Date: 12-6-17
+ * Time: 13:05
+ */
+
 
 namespace Deployer;
 
-require 'recipe/yii.php';                       // The base recipe for Yii(2) applications
-require 'recipe/releaz/deployment/yii.php';     // Custom Yii tasks implementation
-require 'recipe/releaz/deployment/files.php';   // Custom Files tasks implementation
-require 'recipe/releaz/deployment/migrate.php'; // Custom Migrate tasks implementation
-require 'recipe/releaz/deployment/sync.php';    // Custom Sync tasks implementation
+require __DIR__ . '/vendor/deployer/deployer/recipe/common.php'; // Require the common tasks.
 
-use Symfony\Component\Yaml\Yaml;                // Require YAML to read config file.
+// Add php files containing custom tasks
+require 'recipe/deployment/yii.php';
+require 'recipe/deployment/sync.php';
+require 'recipe/deployment/migrate.php';
+require 'recipe/deployment/files.php';
+
+use Symfony\Component\Yaml\Yaml;
 
 // Configuration
 $yaml = Yaml::parse(file_get_contents(__DIR__ . "/deploy-config.yml"));
@@ -31,3 +40,5 @@ foreach ($yaml['server'] as $host) {
 
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
+
+

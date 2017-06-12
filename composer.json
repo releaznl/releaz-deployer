@@ -19,8 +19,7 @@
             "Deployer\\": "src/"
         },
         "files": [
-            "src/Support/helpers.php",
-            "src/functions.php"
+            "src/Console/InitCommand.php"
         ]
     },
     "bin": [
@@ -28,6 +27,7 @@
     ],
     "require": {
         "php": "~7.0",
+        "deployer/deployer": "^5.0",
         "deployer/phar-update": "~2.0",
         "pimple/pimple": "~3.0",
         "symfony/console": "~2.7|~3.0",

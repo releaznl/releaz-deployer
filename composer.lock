@@ -4,8 +4,61 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ff2e8a3dfd6811a3e5d2f9a6db34c39f",
+    "content-hash": "1180079fa5937f804c5232304f69f9ba",
     "packages": [
+        {
+            "name": "deployer/deployer",
+            "version": "v5.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/deployphp/deployer.git",
+                "reference": "4d7ec8d32eab47b96e232f60307dd90530d900a7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/deployphp/deployer/zipball/4d7ec8d32eab47b96e232f60307dd90530d900a7",
+                "reference": "4d7ec8d32eab47b96e232f60307dd90530d900a7",
+                "shasum": ""
+            },
+            "require": {
+                "deployer/phar-update": "~2.0",
+                "php": "~7.0",
+                "pimple/pimple": "~3.0",
+                "symfony/console": "~2.7|~3.0",
+                "symfony/finder": "~2.7|~3.0",
+                "symfony/process": "~2.7|~3.0",
+                "symfony/yaml": "~2.7|~3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.0"
+            },
+            "bin": [
+                "bin/dep"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Deployer\\": "src/"
+                },
+                "files": [
+                    "src/Support/helpers.php",
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anton Medvedev",
+                    "email": "anton@medv.io"
+                }
+            ],
+            "description": "Deployment Tool",
+            "homepage": "https://deployer.org",
+            "time": "2017-05-31T13:32:24+00:00"
+        },
         {
             "name": "deployer/phar-update",
             "version": "v2.0.0",

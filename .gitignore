@@ -2,5 +2,5 @@ deploy-config.yml
 deploy-config.yml.example
 
 .idea
-
 vendor
+deploy.php
