@@ -16,7 +16,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "Deployer\\": "src/"
+            "Deployer\\": "src/",
+            "Recipe\\": "recipe/"
         },
         "files": [
             "src/Console/InitCommand.php"
