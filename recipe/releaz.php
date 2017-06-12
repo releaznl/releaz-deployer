@@ -12,10 +12,10 @@ namespace Deployer;
 require __DIR__ . '/vendor/deployer/deployer/recipe/common.php'; // Require the common tasks.
 
 // Add php files containing custom tasks
-require 'recipe/deployment/yii_custom.php';
-require 'recipe/deployment/sync.php';
-require 'recipe/deployment/migrate.php';
-require 'recipe/deployment/files.php';
+require 'vendor/releaz/deployer/recipe/deployment/yii_custom.php';
+require 'vendor/releaz/deployer/recipe/deployment/sync.php';
+require 'vendor/releaz/deployer/recipe/deployment/migrate.php';
+require 'vendor/releaz/deployer/recipe/deployment/files.php';
 
 use Symfony\Component\Yaml\Yaml;
 
