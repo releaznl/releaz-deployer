@@ -1,44 +1,95 @@
-# Deployer
+Releaz Deployment Tool
+======================================
 
-<a href="https://travis-ci.org/deployphp/deployer"><img src="https://travis-ci.org/deployphp/deployer.svg?branch=master" alt="Build Status"></a>
-<a href="https://scrutinizer-ci.com/g/deployphp/deployer/"><img src="http://img.shields.io/scrutinizer/g/deployphp/deployer.svg?style=flat" alt="Code Quality"></a>
-<a href="https://scrutinizer-ci.com/g/deployphp/deployer/code-structure/master/code-coverage"><img src="https://img.shields.io/scrutinizer/coverage/g/deployphp/deployer/master.svg?style=flat" alt="Code Quality"></a>
-<a href="https://packagist.org/packages/deployer/deployer"><img src="https://img.shields.io/packagist/dt/deployer/deployer.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/deployer/deployer"><img src="http://img.shields.io/packagist/v/deployer/deployer.svg?style=flat" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/deployer/deployer"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat" alt="License"></a>
 
-A deployment tool written in PHP with support for popular frameworks out of the box
+## Deployment:
+Deploying is done in with the help of [Deployer](https://github.com/deployphp/deployer). 
+To use this dependency, please require this in your composer.json file.
+- `composer require releaz/deployer`
 
-<a href="https://deployer.org"><img src="https://deployer.org/images/header.png" alt=""></a>
+Then initialize Deployer by calling `vendor/bin/dep init` and choose the `Releaz' template. 
+Then and example config file is created with the deploy.php file. Please look below
+for more information about the config file.
 
-See [deployer.org](https://deployer.org) for more information and documentation.
+The `deploy.php` file can be edited in the same way as Deployer works. Please visit the docs 
+of Deployer for more help.
 
-## Features
+### Explanation:
+```yaml
+# General information:
+general:
+  ssh_repo_url: 'git@github.com:johankladder/yii2-app-advanced.git'   # The repository your project is stored
 
-* **Simple** setup process and a minimal learning curve
-* Ready to use recipes for **most frameworks**
-* **Parallel** execution without extensions
-* Something went wrong? **Rollback** to the previous release
-* **Agentless**, it's just SSH
-* **Zero downtime** deployments
+# Staging servers:
+server:
+  # The production server
+  production:
+    host: 'applicationname.com'                       # Deployment server hostname/ip
+    stage: 'production'                               # Stage name; can be used by 'dep deploy-yii [stage]
+    branch: 'master'                                  # The branch that should be used to deploy
+    deploy_path: '/var/www/applicationname.com'       # The deploy location
+    ssh_user: 'username'                              # The SSH username, that has access to the remote server
 
-## Contributing
+  # The development server
+  development:
+    host: 'dev.applicationname.com'                   # Deployment server hostname/ip
+    stage: 'development'                              # Stage name; can be used by 'dep deploy-yii [stage]
+    branch: 'develop'                                 # The branch that should be used to deploy
+    deploy_path: '/var/www/dev.applicationname.com'   # The deploy location
+    ssh_user: 'username'                              # The SSH username, that has access to the remote server
 
-Read the [contributing](https://github.com/deployphp/deployer/blob/master/.github/CONTRIBUTING.md) guide, join the [discussions](https://deployer.org/discuss), take a look on open [issues](https://github.com/deployphp/deployer/issues)
+  # An custom deployment server:
+  custom:
+    host: 'localhost'                                 # Deployment server hostname/ip
+    stage: 'test'                                     # Stage name; can be used by 'dep deploy-yii [stage]
+    branch: 'develop'                                 # The branch that should be used to deploy
+    deploy_path: '/var/www/test.local'                # The deploy location
+    ssh_user: 'johankladder'                          # The SSH username, that has access to the remote server
+    settings:
+      yii:
+        init: 'Development'                           # Environment that can be used. See `php init` for possibilities
+      files:
+        upload-files:
+          - 'common/config/afile.yml'                 # A file that needs the be send to the remote server
+        show:
+          - 'common/config/afile.yml'                 # A file that needs to be outputted when deploying
+      migrate:
+        rbac: true                                    # Execute RBAC migrations
+        db: true                                      # Execute `yii migrate`
+      sync:
+        uploads:
+          source: 'shared/uploads/'                   # Base of the sync folder
+          dest: 'shared/uploads'                      # 'To' pathname from base deployment path
+          create_if_not_exists: true                  # Create the 'To' path if not exist
+    shared:
+      - 'common/config/config.yaml'
 
-[![good+for+beginner](https://img.shields.io/badge/feature-good%20for%20beginner-1d76db.svg)](https://github.com/deployphp/deployer/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+for+beginner%22)
-[![advanced+level](https://img.shields.io/badge/feature-advanced%20level-5319e7.svg)](https://github.com/deployphp/deployer/issues?q=is%3Aissue+is%3Aopen+label%3A%22advanced+level%22)
 
-## Maintainers
-* Anton Medvedev [@antonmedv](https://github.com/antonmedv)
+```
 
-See also the list of [contributors](https://github.com/deployphp/deployer/graphs/contributors) who participated in this project.
+In the server section you can add different amount of stages. The keys that are given, are not used by Deployer. Explanation:
 
-## Support
+Key | Explanation | Required
+--- | --- | ---
+`host:` | The server host address (Where should the stage be deployed to) | Yes
+`stage:` | The name of the stage. (This stage name can be used when using `dep deploy [stagename]`) | Yes
+`branch:` | The branch that the stage contains. (This is the branch that will be pulled on the remote server) | Yes
+`deploy_path:` | The path where the sources should be pulled on the remote server. (Should always be absolute) | Yes
+`ssh_user:` | The user that is needed for logging in at the remote server. | Yes
+`settings:` | Contains specific settings for the given stage. | No
+`yii/init:` | The initialisation enviromnent for Yii2 apps. In an default situation this can be 'Development' or 'Production'. | No
+`files:upload_files` | Paths to files that needs to be uploaded to the remote server to the same location (paths are seen from project folder).  | No
+`files:show` | Shows the content of an file. Prefixed with the release_path. | No
+`migrate:rbac` | Migrates the RBAC functionality of Yii2. | No
+`migrate:db` | Migrates the 'normal' database migrations | No
+`sync:*` | Special feature for syncing remote files with for example an shared folder. That way developers can maintain shared files and sync them to the remote server, without loss of user created files. The uploads key is required when using this functionality, but only used for visual purpose. (rsync) | No
+`sync:source` | Path to folder (from project root) | When using sync option -> Yes, else no.
+`sync:dest` | Destination path (from deploy path) | When using sync option -> Yes, else no.
+`sync:create_if_not_exists` | Create the destination folder if not exists. | No
+`shared` | Shared entities that need to be placed in the shared folder | No |
 
-Deployer is an open source project. If you want to support the development of Deployer visit our [patreon page](https://www.patreon.com/deployer).
-
-[![Becoming a patron](https://img.shields.io/badge/become-patron-brightgreen.svg)](https://www.patreon.com/deployer)
-
-## License
-Licensed under the [MIT license](https://github.com/deployphp/deployer/blob/master/LICENSE).
+### Passwords
+Mentioned that no passwords are asked to login with SSH? The module is using forward-agent. To ensure your user has access to the remote server with forward-agent and no passwords are asked:
+  - Try `ssh-add -L` to see if your public key is added to the agent. If not run: `ssh-add`
+  - Copy your public key to the remote server's known-hosts with `ssh-copy-id remoteusername@remotehost`
+  - Try `ssh remoteuser@remotehost`. Now no password should be asked as it is inside your agent.
