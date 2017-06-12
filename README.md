@@ -9,7 +9,8 @@ To use this dependency, please require this in your composer.json file.
 
 Then initialize Deployer by calling `vendor/bin/dep init` and choose the `Releaz' template. 
 Then and example config file is created with the deploy.php file. Please look below
-for more information about the config file.
+for more information about the config file. Please contruct the config file from duplicating the 
+example. The deploy.php file is looking default for ``depoy-config.yml``
 
 The `deploy.php` file can be edited in the same way as Deployer works. Please visit the docs 
 of Deployer for more help.

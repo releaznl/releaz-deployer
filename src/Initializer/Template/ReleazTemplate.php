@@ -26,14 +26,14 @@ class ReleazTemplate extends FrameworkTemplate
     }
 
     /**
-     * Overridden!
+     * Overridden from parent
      *
      * @inheritdoc
      */
     public function initialize($filePath, $params)
     {
         copy(__DIR__ . '/../../../recipe/releaz.php', $filePath);
-        copy(__DIR__ . '/../../../recipe/releaz/' . $this->getExample(),
+        copy(__DIR__ . '/../../../recipe/' . $this->getExample(),
             dirname($filePath) . '/' . $this->getExample());
     }
 

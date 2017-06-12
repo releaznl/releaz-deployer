@@ -23,9 +23,6 @@
             "src/Console/InitCommand.php"
         ]
     },
-    "bin": [
-        "bin/dep"
-    ],
     "require": {
         "php": "~7.0",
         "deployer/deployer": "^5.0",
