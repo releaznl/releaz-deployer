@@ -1,34 +1,38 @@
 {
-    "name": "releaz/deployer",
-    "description": "Deployment Tool",
-    "license": "MIT",
-    "homepage": "https://deployer.org",
-    "support": {
-        "issues": "https://github.com/deployphp/deployer/issues",
-        "source": "https://github.com/deployphp/deployer",
-        "docs": "https://deployer.org/docs"
+  "name": "releaz/deployer",
+  "description": "Yii2 Deployer (Based on Deployer)",
+  "license": "MIT",
+  "homepage": "https://deployer.org",
+  "support": {
+    "issues": "https://github.com/deployphp/deployer/issues",
+    "source": "https://github.com/deployphp/deployer",
+    "docs": "https://deployer.org/docs"
+  },
+  "authors": [
+    {
+      "name": "Anton Medvedev",
+      "email": "anton@medv.io"
     },
-    "authors": [
-        {
-            "name": "Anton Medvedev",
-            "email": "anton@medv.io"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "Deployer\\": "src/",
-            "Recipe\\": "recipe/"
-        },
-        "files": [
-            "src/Console/InitCommand.php"
-        ]
-    },
-    "require": {
-        "php": "~7.0",
-        "deployer/deployer": "^5.0",
-        "symfony/yaml": "~2.7|~3.0"
-    },
-    "config": {
-        "sort-packages": true
+    {
+      "name": "Johan Kladder",
+      "email": "j.kladder@st.hanze.nl"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Deployer\\": "src/",
+      "Recipe\\": "recipe/"
+    },
+    "files": [
+      "src/Console/InitCommand.php"
+    ]
+  },
+  "require": {
+    "php": "~7.0",
+    "deployer/deployer": "^5.0",
+    "symfony/yaml": "~2.7|~3.0"
+  },
+  "config": {
+    "sort-packages": true
+  }
 }
