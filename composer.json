@@ -19,7 +19,8 @@
             "Deployer\\": "src/"
         },
         "files": [
-            "src/Console/InitCommand.php"
+            "src/Console/InitCommand.php",
+            "recipe/deployment/yii.php"
         ]
     },
     "bin": [
