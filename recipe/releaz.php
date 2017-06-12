@@ -14,12 +14,13 @@ namespace Deployer;
  */
 require __DIR__ . '/vendor/deployer/deployer/recipe/common.php'; // Require the common tasks.
 
+use Deployer\Helpers\YamlExtractor;
 use Recipe\deployment\Files;
 use Recipe\deployment\Migrate;
 use Recipe\deployment\Sync;
 use Recipe\deployment\Yii;
 use Symfony\Component\Yaml\Yaml;
-use YamlExtractor;
+
 
 /**
  * Loading all relevant recipe tasks and functions:

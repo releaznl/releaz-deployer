@@ -1,6 +1,8 @@
-Releaz Deployment Tool
+Configurable Deployment Tool (Based on Deployer)
 ======================================
 
+This tool is created for easy Yii2 deployment with the help of Deployer. In this 
+tool it's easy to configure deployment variables and share them between your colleagues. 
 
 ## Deployment:
 Deploying is done in with the help of [Deployer](https://github.com/deployphp/deployer). 

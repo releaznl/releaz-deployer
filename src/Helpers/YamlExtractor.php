@@ -6,6 +6,9 @@
  * Date: 12-6-17
  * Time: 15:02
  */
+
+namespace Deployer\Helpers;
+
 class YamlExtractor
 {
 
@@ -18,9 +21,9 @@ class YamlExtractor
      * @return mixed|null The value or null when nothing was found
      * @throws \Deployer\Exception\Exception When no key was found, but was needed
      */
-    public static function extract(array $yamlArray, $key, $needed = false)
+    public static function extract($yamlArray, $key, $needed = false)
     {
-        if (array_key_exists($key, $yamlArray))
+        if (!empty($yamlArray) && array_key_exists($key, $yamlArray))
             return $yamlArray[$key];
 
         if ($needed) {
