@@ -14,10 +14,17 @@ class Yii
 
     public function __construct()
     {
-        // TODO:10 Hardcode all the tasks that needs to be executed in the right order. id:1
         desc('Deploys a Yii2 application, complete with given settings.');
         task('deploy-yii', [
-            'deploy',
+            'deploy:prepare',
+            'deploy:lock',
+            'deploy:release',
+            'deploy:update_code',
+            'deploy:vendors',
+            'deploy:shared',
+            'deploy:symlink',
+            'deploy:unlock',
+            'cleanup',
         ]);
 
         task('deploy-custom', [
