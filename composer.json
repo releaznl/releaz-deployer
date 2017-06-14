@@ -2,12 +2,6 @@
   "name": "releaz/deployer",
   "description": "Yii2 Deployer (Based on Deployer)",
   "license": "MIT",
-  "homepage": "https://deployer.org",
-  "support": {
-    "issues": "https://github.com/deployphp/deployer/issues",
-    "source": "https://github.com/deployphp/deployer",
-    "docs": "https://deployer.org/docs"
-  },
   "authors": [
     {
       "name": "Anton Medvedev",
@@ -22,10 +16,7 @@
     "psr-4": {
       "Deployer\\": "src/",
       "Recipe\\": "recipe/"
-    },
-    "files": [
-      "src/Console/InitCommand.php"
-    ]
+    }
   },
   "require": {
     "php": "~7.0",

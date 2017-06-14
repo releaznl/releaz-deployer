@@ -96,3 +96,8 @@ Mentioned that no passwords are asked to login with SSH? The module is using for
   - Try `ssh-add -L` to see if your public key is added to the agent. If not run: `ssh-add`
   - Copy your public key to the remote server's known-hosts with `ssh-copy-id remoteusername@remotehost`
   - Try `ssh remoteuser@remotehost`. Now no password should be asked as it is inside your agent.
+  
+### Remote server access repository
+To give the deployment server access to your private/public repository on Github, please 
+provide the server's public SSH key as an deployment key in your repository settings.
+  
