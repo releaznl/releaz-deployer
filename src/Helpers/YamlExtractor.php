@@ -19,6 +19,7 @@ class YamlExtractor
      * @param mixed $key The key liked to be extracted
      * @param bool $needed boolean if this key is needed (obligated)
      * @return mixed|null The value or null when nothing was found
+     *
      * @throws \Deployer\Exception\Exception When no key was found, but was needed
      */
     public static function extract($yamlArray, $key, $needed = false)

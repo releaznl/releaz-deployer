@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Recipe\deployment;
 
 use function Deployer\before;
@@ -40,13 +39,18 @@ class Yii
         task('deploy-yii:init', function () {
             $init = get('settings')['yii']['init'];
             if ($init) {
-                $this->init_yii($init);
+                $this->initYii($init);
             }
         });
 
     }
 
-    public function init_yii($environment)
+    /**
+     * Initializes Yii with the given environment string (remotely)
+     *
+     * @param string $environment
+     */
+    public function initYii(string $environment)
     {
         run("cd {{release_path}} && php init --env={$environment} --overwrite=All");
     }

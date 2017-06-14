@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: johankladder
- * Date: 12-6-17
- * Time: 13:05
- */
-
 
 namespace Deployer;
 
@@ -25,12 +18,11 @@ use Symfony\Component\Yaml\Yaml;
 /**
  * Loading all relevant recipe tasks and functions:
  */
-$recipes = [
-    new Yii(),
-    new Sync(),
-    new Files(),
-    new Migrate()
-];
+new Yii();
+new Sync();
+new Files();
+new Migrate();
+
 
 /**
  * Load the configuration file and extract the content:

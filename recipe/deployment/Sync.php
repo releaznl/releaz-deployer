@@ -23,13 +23,25 @@ class Sync
         });
     }
 
-    public function sync($dirs)
+
+    /**
+     * Function for syncing an array of folders. This function will firstly create the folders if needed, and
+     * after that sync it.
+     *
+     * @param array $dirs An array containing directories information.
+     */
+    public function sync(array $dirs)
     {
-        $this->create_sync_folders($dirs);
-        $this->sync_folders($dirs);
+        $this->createSyncFolders($dirs);
+        $this->syncFolders($dirs);
     }
 
-    public function sync_folders($dirs)
+    /**
+     * Function that sync given sync information with the help of rsync to the remote server.
+     *
+     * @param array $dirs Array containing directories information
+     */
+    public function syncFolders(array $dirs)
     {
         foreach ($dirs as $dir) {
             run('rsync -a {{release_path}}/' . $dir['source'] .
@@ -37,16 +49,26 @@ class Sync
         }
     }
 
-    public function create_sync_folders($dirs)
+    /**
+     * Function for creating synced directories.
+     *
+     * @param array $dirs Array containing directories information
+     */
+    public function createSyncFolders(array $dirs)
     {
         foreach ($dirs as $dir) {
             if ($dir['create_if_not_exists'])
-                $this->create_sync_folder($dir['dest']);
+                $this->createFolder($dir['dest']);
         }
     }
 
 
-    public function create_sync_folder($dir)
+    /**
+     * Function for creating an folder in the deploy path on the remote server.
+     *
+     * @param string $dir The pathname
+     */
+    public function createFolder(string $dir)
     {
         run('mkdir -p {{deploy_path}}/' . $dir);
     }
