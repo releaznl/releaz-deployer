@@ -4,3 +4,5 @@ deploy-config.yml.example
 .idea
 vendor
 deploy.php
+
+composer.phar
