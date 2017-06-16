@@ -16,7 +16,10 @@
     "psr-4": {
       "Deployer\\": "src/",
       "Recipe\\": "recipe/"
-    }
+    },
+    "files": [
+      "src/Console/InitCommand.php"
+    ]
   },
   "require": {
     "php": "~7.0",
