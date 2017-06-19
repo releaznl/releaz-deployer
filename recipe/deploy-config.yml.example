@@ -1,6 +1,6 @@
 # General information:
 general:
-  ssh_repo_url: 'git@github.com:johankladder/yii2-app-advanced.git'   # The repository your project is stored
+  ssh_repo_url: 'git@github.com:johankladder/releaz-deployer.git'   # The repository your project is stored
 
 # Staging servers:
 server:
