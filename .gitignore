@@ -1,5 +1,5 @@
 deploy-config.yml
-deploy-config.yml.example
+/deploy-config.yml.example
 
 .idea
 vendor
