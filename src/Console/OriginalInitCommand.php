@@ -164,10 +164,6 @@ class OriginalInitCommand extends Command
         $initializer->addTemplate('Yii', new YiiTemplate());
         $initializer->addTemplate('Yii2 Basic App', new Yii2BasicAppTemplate());
         $initializer->addTemplate('Yii2 Advanced App', new Yii2AdvancedAppTemplate());
-        $initializer->addTemplate('Zend Framework', new ZendTemplate());
-        $initializer->addTemplate('CakePHP', new CakeTemplate());
-        $initializer->addTemplate('CodeIgniter', new CodeIgniterTemplate());
-        $initializer->addTemplate('Drupalss', new DrupalTemplate());
 
         return $initializer;
     }
