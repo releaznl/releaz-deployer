@@ -44,14 +44,14 @@ verschillende componenten:
 ## releases
 In de `releases` folder staan maximaal zes instanties van deployments. Dit houdt in dat in bijvoorbeeld 
 `releases/10` alle sources van de 10e release staan en in `releases/11` alle sources van de 11e release. 
-Hierdoor is het mogelijk om snel rollback te toen met Deployer. [Lees meer]()
+Hierdoor is het mogelijk om snel rollback te toen met Deployer. [Lees meer](https://deployer.org/docs/)
 
 ## shared
 In de shared folder staat alle 'shared' content. D.w.z. dat hier alleen bestanden in staan 
 die worden gebruikt door alle deployments. Denk hierbij aan bijvoorbeeld secrets en dergelijken.
 Om deze secrets in te vullen moet men 1 keer handmatig inloggen op de server en bijvoorbeeld 
  wachtwoorden toevoegen aan het `shared/common/config/config.yaml` bestand. Vervolgens zal 
- Deployer hier met de volgende deploy rekening mee houden. [Lees meer]()
+ Deployer hier met de volgende deploy rekening mee houden. [Lees meer](https://deployer.org/docs/)
  
 ## current
 De current folder verwijst altijd naar de laatste deploy. Verwijs eventueel de public_html 
@@ -59,5 +59,5 @@ folder dus ook altijd door naar sources binnen deze map.
  
  > Om een public_html door te verwijzen naar de `current` folder, is het noodzakelijk dat de 
  >`public_html` folder eerst wordt verwijderd. Daarna kan er `ln -s current/path/to/docroot public_html` 
- > worden uitgevoerd. Hierdoor is `public_html` geen folder meer, maar een symlink en verwijst deze 
- > altijd naar de nieuwste versie van de deployments.
+ > worden uitgevoerd. Hierdoor is `public_html` geen folder meer, maar een [symlink](https://en.wikipedia.org/wiki/Symbolic_link) en verwijst deze 
+ > altijd naar de nieuwste versie van de deployments. 
