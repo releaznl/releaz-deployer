@@ -18,9 +18,12 @@ class Sync
 
         desc("Uses RSYNC to sync folders that were given in the 'sync' section.");
         task('sync:sync_folders', function () {
-            $dirs = get('settings')['sync'];
+            $dirs = get('settings');
             if (!empty($dirs)) {
-                $this->sync($dirs);
+                if(array_key_exists('sync', $dirs)) {
+                    $dirs = $dirs['sync'];
+                    $this->sync($dirs);
+                }
             }
         });
     }
