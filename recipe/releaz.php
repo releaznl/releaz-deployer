@@ -12,7 +12,6 @@ use Recipe\deployment\Files;
 use Recipe\deployment\Migrate;
 use Recipe\deployment\Sync;
 use Recipe\deployment\Yii;
-use Symfony\Component\Yaml\Yaml;
 
 
 /**
@@ -27,7 +26,7 @@ new Migrate();
 /**
  * Load the configuration file and extract the content:
  */
-$yaml = Yaml::parse(file_get_contents(__DIR__ . "/deploy-config.yml"));
+$yaml = YamlExtractor::parse(__DIR__ . "/deploy-config.yml");
 
 $general = YamlExtractor::extract($yaml, 'general', true);
 $repo = YamlExtractor::extract($general, 'ssh_repo_url', true);

@@ -9,6 +9,9 @@
 
 namespace Deployer\Helpers;
 
+use Deployer\Exception\Exception;
+use Symfony\Component\Yaml\Yaml;
+
 class YamlExtractor
 {
 
@@ -34,6 +37,23 @@ class YamlExtractor
         }
 
         return null; // The key was not needed, so continue!
+    }
+
+    /**
+     * Parses an YAML file from an given path.
+     *
+     * @param $path
+     * @return mixed
+     * @throws Exception When file couldn't be found
+     */
+    public static function parse($path)
+    {
+        if (!file_exists($path)) {
+            throw new Exception('The give file ' . $path . ' doesn\'t exist.');
+        }
+
+        return Yaml::parse($path);
+
     }
 
 }
