@@ -2,6 +2,7 @@
 
 namespace Recipe\deployment;
 
+use Deployer\Helpers\ArrayHelper;
 use function Deployer\desc;
 use function Deployer\get;
 use function Deployer\run;
@@ -18,12 +19,9 @@ class Sync
 
         desc("Uses RSYNC to sync folders that were given in the 'sync' section.");
         task('sync:sync_folders', function () {
-            $dirs = get('settings');
+            $dirs = ArrayHelper::get(get('settings'), ['sync']);
             if (!empty($dirs)) {
-                if(array_key_exists('sync', $dirs)) {
-                    $dirs = $dirs['sync'];
                     $this->sync($dirs);
-                }
             }
         });
     }

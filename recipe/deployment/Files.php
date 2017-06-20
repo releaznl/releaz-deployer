@@ -2,6 +2,7 @@
 
 namespace Recipe\deployment;
 
+use Deployer\Helpers\ArrayHelper;
 use function Deployer\desc;
 use function Deployer\get;
 use function Deployer\run;
@@ -20,8 +21,8 @@ class Files
 
         desc("Uploads all the files that where given in the upload tag.");
         task('files:upload-files', function () {
-            $files = get('settings')['files']['upload-files'];
-            if ($files) {
+            $files = ArrayHelper::get(get('settings'), ['files', 'upload-files']);
+            if (!empty($files)) {
                 foreach ($files as $file) {
                     $info = $this->extractLocationInformation($file);
                     if ($this->checkFileLocaly($info['in'])) {
@@ -33,8 +34,8 @@ class Files
 
         desc("Shows files that where given in the show tag.");
         task('files:show', function () {
-            $shows = get('settings')['files']['show'];
-            if ($shows) {
+            $shows = ArrayHelper::get(get('settings'), ['files', 'show']);
+            if (!empty($shows)) {
                 foreach ($shows as $file) {
                     if ($this->checkFileRemote($file)) {
                         $this->showFileRemote($file);

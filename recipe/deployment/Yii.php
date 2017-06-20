@@ -5,6 +5,7 @@ namespace Recipe\deployment;
 use function Deployer\before;
 use function Deployer\desc;
 use function Deployer\get;
+use Deployer\Helpers\ArrayHelper;
 use function Deployer\run;
 use function Deployer\task;
 
@@ -37,8 +38,8 @@ class Yii
 
         desc("Inits the remote application with the value of init section");
         task('deploy-yii:init', function () {
-            $init = get('settings')['yii']['init'];
-            if ($init) {
+            $init = ArrayHelper::get(get('settings'), ['yii', 'init']);
+            if (!empty($init)) {
                 $this->initYii($init);
             }
         });
