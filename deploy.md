@@ -36,7 +36,7 @@ server op locatie 'applicationname.com' met als identificatiegebruiker 'username
 externe server de sources pullen van de master branch en deze plaatsen in 'var/www/applicationname'
 
 # Omgeving indeling:
-![useful image]({{ site.url }}/assets/deploy-env.png)
+![useful image](assets/deploy-env.png)
 
 Hier is te zien hoe de de deployment omgeving er uit ziet. Deze omgeving bestaat uit drie 
 verschillende componenten:
