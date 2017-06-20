@@ -2,122 +2,34 @@
 layout: default
 ---
 
-Text can be **bold**, _italic_, or ~~strikethrough~~.
+# Opzetten van de Deployer
+- Zorg ervoor dat je SSH toegang hebt naar de deployment server. Zie [hier]() voor meer.
+- Download / installeer [composer]() als dit nog niet beschikbaar is binnen het project.
+- Installeer de deployer als een development dependency d.m.v. : 
+  - `php composer.phar require releaz/deployer ~[version] --dev`
+- De deployer is vanaf nu beschikbaar vanuit je vendor map. Doordat het gebruik maakt van [Deployer]() 
+kun je de deployer gewoon starten d.m.v. :
+   - `vendor/bin/dep [action]`
+   
+# Het initialiseren van een een deploybare applicaties:
+- Zorg ervoor dat het bovenstaande geinstalleerd is;
+- Daarna, voer `vendor/bin/dep init` uit.
+- Kies de 'Releaz' template voor Yii2 applicaties
+![useful image]({{ site.url }}/assets/image1.png)
+- Volg de stappen.
+- Wanneer alles goed is gegaan, worden er twee bestanden aangemaakt: `deploy.php` en deploy-config.yml.example
 
-[Link to another page](another-page).
+# Gegenereerde bestanden
+Tijdens het initialisatieproces zijn er twee bestanden aangemaakt. Deze bestanden 
+hebben de volgende werking. 
 
-There should be whitespace between paragraphs.
+### deploy.php
+Dit bestand is de kern van de deployer. Het bestand is geoptimaliseerd voor het laden van 
+gegeven configuraties. Hierop staan geen zogenoemde 'secrets' en kan dus gerust meegepushed 
+worden naar de repository.
 
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
+### deploy-config.yml.example
+Dit bestand is een voorbeeld bestand van de deployment configuratie. Dit bestand kan worden 
+overgenomen en naar eigen inbreng worden ingevuld.
 
-# [](#header-1)Header 1
-
-This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
-
-## [](#header-2)Header 2
-
-> This is a blockquote following a header.
->
-> When something is important enough, you do it even if the odds are not in your favor.
-
-### [](#header-3)Header 3
-
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-
-```ruby
-# Ruby code with syntax highlighting
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-```
-
-#### [](#header-4)Header 4
-
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-
-##### [](#header-5)Header 5
-
-1.  This is an ordered list following a header.
-2.  This is an ordered list following a header.
-3.  This is an ordered list following a header.
-
-###### [](#header-6)Header 6
-
-| head1        | head two          | three |
-|:-------------|:------------------|:------|
-| ok           | good swedish fish | nice  |
-| out of stock | good and plenty   | nice  |
-| ok           | good `oreos`      | hmm   |
-| ok           | good `zoute` drop | yumm  |
-
-### There's a horizontal rule below this.
-
-* * *
-
-### Here is an unordered list:
-
-*   Item foo
-*   Item bar
-*   Item baz
-*   Item zip
-
-### And an ordered list:
-
-1.  Item one
-1.  Item two
-1.  Item three
-1.  Item four
-
-### And a nested list:
-
-- level 1 item
-  - level 2 item
-  - level 2 item
-    - level 3 item
-    - level 3 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-
-### Small image
-
-![](https://assets-cdn.github.com/images/icons/emoji/octocat.png)
-
-### Large image
-
-![](https://guides.github.com/activities/hello-world/branching.png)
-
-
-### Definition lists can be used with HTML syntax.
-
-<dl>
-<dt>Name</dt>
-<dd>Godzilla</dd>
-<dt>Born</dt>
-<dd>1952</dd>
-<dt>Birthplace</dt>
-<dd>Japan</dd>
-<dt>Color</dt>
-<dd>Green</dd>
-</dl>
-
-```
-Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
-```
-
-```
-The final element.
-```
+[Ga naar configuratie](configuration)
