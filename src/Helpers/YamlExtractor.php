@@ -52,7 +52,7 @@ class YamlExtractor
             throw new Exception('The give file ' . $path . ' doesn\'t exist.');
         }
 
-        return Yaml::parse($path);
+        return Yaml::parse(file_get_contents($path));
 
     }
 
