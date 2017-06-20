@@ -2,9 +2,9 @@
 layout: default
 ---
 
-Om deployment servers, stages, branches en dergelijken te configureren is kan er een `deploy-config.yml`
+Om deployment servers, stages, branches en dergelijken te configureren is moeter een `deploy-config.yml`
 bestand worden aangemaakt. In dit bestand worden alle 'secrets' gezet. Zorg ervoor, dat wanneer je een 
-public repository gebruikt, dit bestand niet online komt te staan.
+public repository gebruikt, dit bestand niet wordt meegepushed.
 
 # Definieren
 Om te beginnen moet er een `deploy-config.yml` bestand aangemaakt worden. Dit kan doormiddel van 
