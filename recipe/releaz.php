@@ -45,7 +45,7 @@ foreach ($server as $host) {
         ->stage(YamlExtractor::extract($host, 'stage', true))
         ->set('branch', YamlExtractor::extract($host, 'branch', true))
         ->set('deploy_path', YamlExtractor::extract($host, 'deploy_path', true))
-        ->set('settings', YamlExtractor::extract($host, 'settings', true))
+        ->set('settings', YamlExtractor::extract($host, 'settings'))
         ->set('shared_files', YamlExtractor::extract($host, 'shared'));
 }
 
