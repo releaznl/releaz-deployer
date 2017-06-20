@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/releaz.iml" filepath="$PROJECT_DIR$/.idea/releaz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../releaz-progress-indicator/.idea/releaz-progress-indicator.iml" filepath="$PROJECT_DIR$/../releaz-progress-indicator/.idea/releaz-progress-indicator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../yii2-app-advanced/.idea/yii2-app-advanced.iml" filepath="$PROJECT_DIR$/../yii2-app-advanced/.idea/yii2-app-advanced.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../yii2-app-advanced-clean/.idea/yii2-app-advanced-clean.iml" filepath="$PROJECT_DIR$/../yii2-app-advanced-clean/.idea/yii2-app-advanced-clean.iml" />
+    </modules>
+  </component>
+</project>

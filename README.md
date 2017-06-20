@@ -1,103 +1,102 @@
-Configurable Deployment Tool (Based on Deployer)
-======================================
+# The Cayman theme
 
-This tool is created for easy Yii2 deployment with the help of Deployer. In this 
-tool it's easy to configure deployment variables and share them between your colleagues. 
+[![Build Status](https://travis-ci.org/pages-themes/cayman.svg?branch=master)](https://travis-ci.org/pages-themes/cayman) [![Gem Version](https://badge.fury.io/rb/jekyll-theme-cayman.svg)](https://badge.fury.io/rb/jekyll-theme-cayman)
 
-## Deployment:
-Deploying is done in with the help of [Deployer](https://github.com/deployphp/deployer). 
-To use this dependency, please require this in your composer.json file.
-- `composer require releaz/deployer`
+*Cayman is a Jekyll theme for GitHub Pages. You can [preview the theme to see what it looks like](http://pages-themes.github.io/cayman), or even [use it today](#usage).*
 
-Then initialize Deployer by calling `vendor/bin/dep init` and choose the `Releaz' template. 
-Then and example config file is created with the deploy.php file. Please look below
-for more information about the config file. Please contruct the config file from duplicating the 
-example. The deploy.php file is looking default for ``depoy-config.yml``
+![Thumbnail of cayman](thumbnail.png)
 
-The `deploy.php` file can be edited in the same way as Deployer works. Please visit the docs 
-of Deployer for more help.
+## Usage
 
-### Explanation:
-```yaml
-# General information:
-general:
-  ssh_repo_url: 'git@github.com:johankladder/yii2-app-advanced.git'   # The repository your project is stored
+To use the Cayman theme:
 
-# Staging servers:
-server:
-  # The production server
-  production:
-    host: 'applicationname.com'                       # Deployment server hostname/ip
-    stage: 'production'                               # Stage name; can be used by 'dep deploy-yii [stage]
-    branch: 'master'                                  # The branch that should be used to deploy
-    deploy_path: '/var/www/applicationname.com'       # The deploy location
-    ssh_user: 'username'                              # The SSH username, that has access to the remote server
+1. Add the following to your site's `_config.yml`:
 
-  # The development server
-  development:
-    host: 'dev.applicationname.com'                   # Deployment server hostname/ip
-    stage: 'development'                              # Stage name; can be used by 'dep deploy-yii [stage]
-    branch: 'develop'                                 # The branch that should be used to deploy
-    deploy_path: '/var/www/dev.applicationname.com'   # The deploy location
-    ssh_user: 'username'                              # The SSH username, that has access to the remote server
+    ```yml
+    theme: jekyll-theme-cayman
+    ```
 
-  # An custom deployment server:
-  custom:
-    host: 'localhost'                                 # Deployment server hostname/ip
-    stage: 'test'                                     # Stage name; can be used by 'dep deploy-yii [stage]
-    branch: 'develop'                                 # The branch that should be used to deploy
-    deploy_path: '/var/www/test.local'                # The deploy location
-    ssh_user: 'johankladder'                          # The SSH username, that has access to the remote server
-    settings:
-      yii:
-        init: 'Development'                           # Environment that can be used. See `php init` for possibilities
-      files:
-        upload-files:
-          - 'common/config/afile.yml'                 # A file that needs the be send to the remote server
-        show:
-          - 'common/config/afile.yml'                 # A file that needs to be outputted when deploying
-      migrate:
-        rbac: true                                    # Execute RBAC migrations
-        db: true                                      # Execute `yii migrate`
-      sync:
-        uploads:
-          source: 'shared/uploads/'                   # Base of the sync folder
-          dest: 'shared/uploads'                      # 'To' pathname from base deployment path
-          create_if_not_exists: true                  # Create the 'To' path if not exist
-    shared:
-      - 'common/config/config.yaml'
+2. Optionally, if you'd like to preview your site on your computer, add the following to your site's `Gemfile`:
+
+    ```ruby
+    gem "github-pages", group: :jekyll_plugins
+    ```
 
 
+
+## Customizing
+
+### Configuration variables
+
+Cayman will respect the following variables, if set in your site's `_config.yml`:
+
+```yml
+title: [The title of your site]
+description: [A short description of your site's purpose]
 ```
 
-In the server section you can add different amount of stages. The keys that are given, are not used by Deployer. Explanation:
+Additionally, you may choose to set the following optional variables:
 
-Key | Explanation | Required
---- | --- | ---
-`host:` | The server host address (Where should the stage be deployed to) | Yes
-`stage:` | The name of the stage. (This stage name can be used when using `dep deploy [stagename]`) | Yes
-`branch:` | The branch that the stage contains. (This is the branch that will be pulled on the remote server) | Yes
-`deploy_path:` | The path where the sources should be pulled on the remote server. (Should always be absolute) | Yes
-`ssh_user:` | The user that is needed for logging in at the remote server. | Yes
-`settings:` | Contains specific settings for the given stage. | No
-`yii/init:` | The initialisation enviromnent for Yii2 apps. In an default situation this can be 'Development' or 'Production'. | No
-`files:upload_files` | Paths to files that needs to be uploaded to the remote server to the same location (paths are seen from project folder).  | No
-`files:show` | Shows the content of an file. Prefixed with the release_path. | No
-`migrate:rbac` | Migrates the RBAC functionality of Yii2. | No
-`migrate:db` | Migrates the 'normal' database migrations | No
-`sync:*` | Special feature for syncing remote files with for example an shared folder. That way developers can maintain shared files and sync them to the remote server, without loss of user created files. The uploads key is required when using this functionality, but only used for visual purpose. (rsync) | No
-`sync:source` | Path to folder (from project root) | When using sync option -> Yes, else no.
-`sync:dest` | Destination path (from deploy path) | When using sync option -> Yes, else no.
-`sync:create_if_not_exists` | Create the destination folder if not exists. | No
-`shared` | Shared entities that need to be placed in the shared folder | No |
+```yml
+show_downloads: ["true" or "false" to indicate whether to provide a download URL]
+google_analytics: [Your Google Analytics tracking ID]
+```
 
-### Passwords
-Mentioned that no passwords are asked to login with SSH? The module is using forward-agent. To ensure your user has access to the remote server with forward-agent and no passwords are asked:
-  - Try `ssh-add -L` to see if your public key is added to the agent. If not run: `ssh-add`
-  - Copy your public key to the remote server's known-hosts with `ssh-copy-id remoteusername@remotehost`
-  - Try `ssh remoteuser@remotehost`. Now no password should be asked as it is inside your agent.
-  
-### Remote server access repository
-To give the deployment server access to your private/public repository on Github, please 
-provide the server's public SSH key as an deployment key in your repository settings.
-  
+### Stylesheet
+
+If you'd like to add your own custom styles:
+
+1. Create a file called `/assets/css/style.scss` in your site
+2. Add the following content to the top of the file, exactly as shown:
+    ```scss
+    ---
+    ---
+
+    @import "{{ site.theme }}";
+    ```
+3. Add any custom CSS (or Sass, including imports) you'd like immediately after the `@import` line
+
+### Layouts
+
+If you'd like to change the theme's HTML layout:
+
+1. [Copy the original template](https://github.com/pages-themes/cayman/blob/master/_layouts/default.html) from the theme's repository<br />(*Pro-tip: click "raw" to make copying easier*)
+2. Create a file called `/_layouts/default.html` in your site
+3. Paste the default layout content copied in the first step
+4. Customize the layout as you'd like
+
+### Sass variables
+
+If you'd like to change the theme's [Sass variables](https://github.com/pages-themes/cayman/blob/master/_sass/variables.scss), set new values before the `@import` line in your stylesheet:
+
+```scss
+$section-headings-color: #0086b3;
+
+@import "{{ site.theme }}";
+```
+
+## Roadmap
+
+See the [open issues](https://github.com/pages-themes/cayman/issues) for a list of proposed features (and known issues).
+
+## Project philosophy
+
+The Cayman theme is intended to make it quick and easy for GitHub Pages users to create their first (or 100th) website. The theme should meet the vast majority of users' needs out of the box, erring on the side of simplicity rather than flexibility, and provide users the opportunity to opt-in to additional complexity if they have specific needs or wish to further customize their experience (such as adding custom CSS or modifying the default layout). It should also look great, but that goes without saying.
+
+## Contributing
+
+Interested in contributing to Cayman? We'd love your help. Cayman is an open source project, built one contribution at a time by users like you. See [the CONTRIBUTING file](CONTRIBUTING.md) for instructions on how to contribute.
+
+### Previewing the theme locally
+
+If you'd like to preview the theme locally (for example, in the process of proposing a change):
+
+1. Clone down the theme's repository (`git clone https://github.com/pages-themes/cayman`)
+2. `cd` into the theme's directory
+3. Run `script/bootstrap` to install the necessary dependencies
+4. Run `bundle exec jekyll serve` to start the preview server
+5. Visit [`localhost:4000`](http://localhost:4000) in your browser to preview the theme
+
+### Running tests
+
+The theme contains a minimal test suite, to ensure a site with the theme would build successfully. To run the tests, simply run `script/cibuild`. You'll need to run `script/bootstrap` one before the test script will work.

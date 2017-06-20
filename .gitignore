@@ -1,8 +1,4 @@
-deploy-config.yml
-/deploy-config.yml.example
-
-.idea
-vendor
-deploy.php
-
-composer.phar
+_site
+.sass-cache
+Gemfile.lock
+*.gem
