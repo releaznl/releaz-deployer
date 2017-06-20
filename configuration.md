@@ -9,7 +9,9 @@ public repository gebruikt, dit bestand niet wordt meegepushed.
 # Definieren
 Om te beginnen moet er een `deploy-config.yml` bestand aangemaakt worden. Dit kan doormiddel van 
 het dupliceren van het voorbeeld bestand. Wanneer dit niet mogelijk is, gebruik dan het volgende
-voorbeeld:
+voorbeeld of [download](assets/deploy-config.yml.example) het orginele bestand.
+
+## Algemeen
 
 ```yaml
 # General information:
@@ -26,29 +28,34 @@ server:
     deploy_path: '/var/www/applicationname.com'       # The deploy location
     ssh_user: 'username'                              # The SSH username, that has access to the remote server
 
-  # The development server
-  development:
-    host: 'dev.applicationname.com'                   # Deployment server hostname/ip
-    stage: 'development'                              # Stage name; can be used by 'dep deploy-yii [stage]
-    branch: 'develop'                                 # The branch that should be used to deploy
-    deploy_path: '/var/www/dev.applicationname.com'   # The deploy location
-    ssh_user: 'username'                              # The SSH username, that has access to the remote server
+```
+In het bovenstaande (gedeeltelijke) example is te zien hoe een stage gedefinieerd wordt.
+- Allereerst wordt een betreffende repository opgegeven. Deze repository mag zowel private als public zijn.
+- Daarna kunnen de server settings worden gedefinieerd;
+    - Allereerst moet de host worden gedefinieerd. De host is het adres waarop de remote server 
+     te bereiken is. Dit kan zowel een ip-adres als dns naam zijn. Het is belangrijk dat een hostnaam maar een keer 
+     gebruikt mag worden tussen elke stage. Er kunnen dus niet meerdere stages zijn die 'applicationname.com' als 
+     hostname hebben. 
+     - Daarna kan de stage worden opgegeven. De stage is de key die je gaat gebruiken bij het oproepen van 
+     een actie. Bijvoorbeeld in dit voorbeeld zou je voor het deployen `vender/bin/dep deploy-yii production` moeten 
+     gebruiken.
+     - Als derde wordt er een branchnaam opgegeven. Deze branch wordt gebruikt om als basis te gebruiken 
+     voor het deployen. 
+     - Hierna wordt een zogenoemd deploy_path opgegeven. Dit is de locatie waar Deployer zijn bestanden
+     en mappen mag plaatsen.
+     - Als laatste wordt er een SSH gebruikersnaam opgegeven. Dit is de naam die je gebruikt om 
+     via SSH toegang te krijgen naar de server.
 
-  # An custom deployment server:
-  custom:
-    host: 'localhost'                                 # Deployment server hostname/ip
-    stage: 'test'                                     # Stage name; can be used by 'dep deploy-yii [stage]
-    branch: 'develop'                                 # The branch that should be used to deploy
-    deploy_path: '/var/www/test.local'                # The deploy location
-    ssh_user: 'johankladder'                          # The SSH username, that has access to the remote server
+Volgorde van bovenstaande keys zijn niet van belang.
+
+## Instellingen
+
+```yaml
+    [...]
+    username: '.....'
     settings:
       yii:
         init: 'Development'                           # Environment that can be used. See `php init` for possibilities
-      files:
-        upload-files:
-          - 'common/config/afile.yml'                 # A file that needs the be send to the remote server
-        show:
-          - 'common/config/afile.yml'                 # A file that needs to be outputted when deploying
       migrate:
         rbac: true                                    # Execute RBAC migrations
         db: true                                      # Execute `yii migrate`
@@ -59,11 +66,19 @@ server:
           create_if_not_exists: true                  # Create the 'To' path if not exist
     shared:
       - 'common/config/config.yaml'
-
-
 ```
 
-# Configureren
+Om stages meer opties te geven, kan het volgende onder de SSH username worden geplaatst. In deze situatie 
+zal er tijdens het deployen het volgende gebeuren:
+- Een Yii applicatie zal in 'Development' environment worden ingesteld. De deployer voert `php init` op 
+de remote server uit en zal dit doen met de 'Development' optie.
+- RBAC migraties zullen worden uitgevoerd.
+- Database migraties zullen worden uitgevoerd.
+- De map `projectroot/shared/uploads` zal worden gesynchroniseerd met `deploypath/shared/uploads`. En deze 
+zal worden aangemaakt wanneer deze niet aanwezig is.
+- Het bestand 'common/config/config.yaml' zal worden gezien als shared resources.
+
+# Meer opties:
 Wanneer het bestand wordt ingesteld. Houdt dan rekening met de volgende restricties en mogelijkheden:
 
 Key | Explanation | Required
