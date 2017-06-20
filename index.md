@@ -15,7 +15,7 @@ kun je de deployer gewoon starten d.m.v. :
 - Zorg ervoor dat het bovenstaande geinstalleerd is;
 - Daarna, voer `vendor/bin/dep init` uit.
 - Kies de 'Releaz' template voor Yii2 applicaties
-![useful image]({{ site.url }}/assets/image1.png)
+![useful image](assets/image1.png)
 - Volg de stappen.
 - Wanneer alles goed is gegaan, worden er twee bestanden aangemaakt: `deploy.php` en deploy-config.yml.example
 
