@@ -6,3 +6,7 @@ vendor
 deploy.php
 
 composer.phar
+
+# gh-pages sources:
+_site
+Gemfile.lock
