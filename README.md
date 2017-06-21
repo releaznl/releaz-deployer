@@ -1,6 +1,10 @@
 Configurable Deployment Tool (Based on Deployer)
 ======================================
 
+Build status: [![Build Status](https://travis-ci.org/johankladder/releaz-deployer.svg?branch=master)](https://travis-ci.org/johankladder/releaz-deployer)
+
+Build status [Deployer](https://github.com/deployphp/deployer): [![Build Status](https://travis-ci.org/deployphp/deployer.svg?branch=master)](https://travis-ci.org/deployphp/deployer)
+
 Docs: https://johankladder.github.io/releaz-deployer
 
 Packagist: https://packagist.org/packages/releaz/deployer

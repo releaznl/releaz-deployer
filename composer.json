@@ -24,9 +24,13 @@
   "require": {
     "php": "~7.0",
     "deployer/deployer": "^5.0",
+    "symfony/framework-bundle": "^3.3",
     "symfony/yaml": "~2.7|~3.0"
   },
   "config": {
     "sort-packages": true
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.1"
   }
 }

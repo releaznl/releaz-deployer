@@ -34,11 +34,13 @@ class ReleazTemplate extends FrameworkTemplate
     {
         copy(__DIR__ . '/../../../recipe/releaz.php', $filePath); // Copy the deploy file.
 
-        $exampleFIle = $this->getExamplePath(); // Get the path of the example file.
+        $exampleFile = $this->getExamplePath(); // Get the path of the example file.
 
-        $this->setParamsInExample($exampleFIle, $params); // Insert the params
+        $projectFile = dirname($filePath) . '/' . $this->getExample(); // The location of the project file.
 
-        copy($exampleFIle, dirname($filePath) . '/' . $this->getExample()); // Copy content.
+        copy($exampleFile, $projectFile); // Copy content.
+
+        $this->setParamsInExample($projectFile, $params); // Insert the params
     }
 
     private function getExamplePath()
@@ -46,15 +48,15 @@ class ReleazTemplate extends FrameworkTemplate
         return __DIR__ . '/../../../recipe/' . $this->getExample();
     }
 
-    private function setParamsInExample($exampleFile, $params)
+    private function setParamsInExample($filePath, $params)
     {
-        $content = file_get_contents($exampleFile);
+        $content = file_get_contents($filePath);
 
         $repoUrl = $this->getRepositoryFromParams($params);
 
         $content = str_replace('[REPO_URL]', $repoUrl, $content);
 
-        file_put_contents($exampleFile, $content);
+        file_put_contents($filePath, $content);
     }
 
     private function getRepositoryFromParams($params)
