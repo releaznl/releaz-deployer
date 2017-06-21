@@ -5,6 +5,8 @@ layout: default
 Als referentie nemen we een voorbeeld met de volgende stage in de configuratie:
 
 ```yaml
+[...]
+server:
   production:
     host: 'applicationname.com'                   
     stage: 'production'                              
@@ -22,8 +24,6 @@ Als referentie nemen we een voorbeeld met de volgende stage in de configuratie:
               source: 'shared/uploads/'                 
               dest: 'shared/uploads'                    
               create_if_not_exists: true                  
-        shared:
-          - 'common/config/config.yaml'
 ```
 
 # Uitvoeren
@@ -34,6 +34,8 @@ Om deze deployment uit te voeren, zullen we de volgende commando moeten uitvoere
 Wanneer het bovenstaande commando is uitgevoerd, zal Deployer contact maken met de deployment 
 server op locatie 'applicationname.com' met als identificatiegebruiker 'username'. Daarna zal de 
 externe server de sources pullen van de master branch en deze plaatsen in 'var/www/applicationname'
+
+Zorg ervoor dat je SSH toegang hebt naar de server. Raadpleeg zonodig de [ssh](ssh) pagina.
 
 # Omgeving indeling:
 ![useful image](assets/deploy-env.png)
@@ -50,7 +52,7 @@ Hierdoor is het mogelijk om snel rollback te toen met Deployer. [Lees meer](http
 In de shared folder staat alle 'shared' content. D.w.z. dat hier alleen bestanden in staan 
 die worden gebruikt door alle deployments. Denk hierbij aan bijvoorbeeld secrets en dergelijken.
 Om deze secrets in te vullen moet men 1 keer handmatig inloggen op de server en bijvoorbeeld 
- wachtwoorden toevoegen aan het `shared/common/config/config.yaml` bestand. Vervolgens zal 
+ wachtwoorden toevoegen aan het `shared/common/config/config.yml` bestand. Vervolgens zal 
  Deployer hier met de volgende deploy rekening mee houden. [Lees meer](https://deployer.org/docs/)
  
 ## current
@@ -61,3 +63,9 @@ folder dus ook altijd door naar sources binnen deze map.
  >`public_html` folder eerst wordt verwijderd. Daarna kan er `ln -s current/path/to/docroot public_html` 
  > worden uitgevoerd. Hierdoor is `public_html` geen folder meer, maar een [symlink](https://en.wikipedia.org/wiki/Symbolic_link) en verwijst deze 
  > altijd naar de nieuwste versie van de deployments. 
+ 
+# Klaar?
+
+Nu de applicatie eenmaal gedeployed is, kan vanaf nu elke deploy worden gestart met 
+`vendor/bin/dep deploy-yii [stage]`. Wanneer de `deploy-config.yml` op de repository is geplaatst 
+kan iedereen deployen. 
