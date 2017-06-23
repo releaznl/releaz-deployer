@@ -8,16 +8,12 @@
 namespace Deployer\Console;
 
 use Deployer\Initializer\Initializer;
-use Deployer\Initializer\Template\CakeTemplate;
-use Deployer\Initializer\Template\CodeIgniterTemplate;
 use Deployer\Initializer\Template\CommonTemplate;
-use Deployer\Initializer\Template\DrupalTemplate;
 use Deployer\Initializer\Template\LaravelTemplate;
 use Deployer\Initializer\Template\SymfonyTemplate;
 use Deployer\Initializer\Template\Yii2AdvancedAppTemplate;
 use Deployer\Initializer\Template\Yii2BasicAppTemplate;
 use Deployer\Initializer\Template\YiiTemplate;
-use Deployer\Initializer\Template\ZendTemplate;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
