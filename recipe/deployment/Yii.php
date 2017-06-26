@@ -2,10 +2,10 @@
 
 namespace Recipe\deployment;
 
+use Deployer\Helpers\ArrayHelper;
 use function Deployer\before;
 use function Deployer\desc;
 use function Deployer\get;
-use Deployer\Helpers\ArrayHelper;
 use function Deployer\run;
 use function Deployer\task;
 
@@ -39,8 +39,9 @@ class Yii
         desc("Inits the remote application with the value of init section");
         task('deploy-yii:init', function () {
             $init = ArrayHelper::get(get('settings'), ['yii', 'init']);
+            $overwrite = ArrayHelper::get(get('settings'), ['yii', 'overwrite']);
             if (!empty($init)) {
-                $this->initYii($init);
+                $this->initYii($init, $overwrite);
             }
         });
 
@@ -50,10 +51,14 @@ class Yii
      * Initializes Yii with the given environment string (remotely)
      *
      * @param string $environment
+     * @param null $overwrite
      */
-    public function initYii(string $environment)
+    public function initYii(string $environment, $overwrite = null)
     {
-        run("cd {{release_path}} && php init --env={$environment} --overwrite=All");
+        if(empty($overwrite)) {
+            $overwrite = 'All';
+        }
+        run("cd {{release_path}} && php init --env={$environment} --overwrite={$overwrite}");
     }
 }
 

@@ -30,6 +30,7 @@ server:
     settings:
       yii:
         init: 'Development'                           # Environment that can be used. See `php init` for possibilities
+        overwrite: 'All'                              # Overwrite all the generated files during init | Can also be None
       files:
         upload-files:
           - 'common/config/afile.yml'                 # A file that needs the be send to the remote server
