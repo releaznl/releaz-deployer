@@ -59,6 +59,7 @@ server:
     settings:
       yii:
         init: 'Development'                           # Environment that can be used. See `php init` for possibilities
+        overwrite: 'All'                              # Overwrite all the generated files during init | Can also be None
       files:
         upload-files:
           - 'common/config/afile.yml'                 # A file that needs the be send to the remote server
@@ -89,6 +90,7 @@ Key | Explanation | Required
 `ssh_user:` | The user that is needed for logging in at the remote server. | Yes
 `settings:` | Contains specific settings for the given stage. | No
 `yii/init:` | The initialisation enviromnent for Yii2 apps. In a default situation this can be 'Development' or 'Production'. | No
+`yii/overwrite:` | Overwrite all the files when perform a php init (can be 'All' | 'None') | No (All are overwritten)
 `files:upload_files` | Paths to files that needs to be uploaded to the remote server to the same location (paths are seen from project folder).  | No
 `files:show` | Shows the content of a file. Prefixed with the release_path. | No
 `migrate:rbac` | Migrates the RBAC functionality of Yii2. | No

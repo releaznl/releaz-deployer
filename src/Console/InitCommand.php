@@ -22,6 +22,6 @@ class InitCommand extends OriginalInitCommand
     protected function createInitializer()
     {
         return parent::createInitializer()
-            ->addTemplate('Releaz', new ReleazTemplate());
+            ->addTemplate(self::RELEAZ_TEMPLATE_NAME, new ReleazTemplate());
     }
 }
