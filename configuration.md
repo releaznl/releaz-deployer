@@ -85,19 +85,20 @@ Key | Explanation | Required
 --- | --- | ---
 `host:` | The server host address (Where should the stage be deployed to) | Yes
 `stage:` | The name of the stage. (This stage name can be used when using `dep deploy [stagename]`) | Yes
-`branch:` | The branch that the stage contains. (This is the branch that will be pulled on the remote server) | Yes
+`branch:` | The branch that the stage contains. (This is the branch that will be pulled on to the remote server) | Yes
 `deploy_path:` | The path where the sources should be pulled on the remote server. (Should always be absolute) | Yes
 `ssh_user:` | The user that is needed for logging in at the remote server. | Yes
 `settings:` | Contains specific settings for the given stage. | No
-`yii/init:` | The initialisation enviromnent for Yii2 apps. In an default situation this can be 'Development' or 'Production'. | No
-`files:upload_files` | Paths to files that needs to be uploaded to the remote server to the same location (paths are seen from project folder).  | No
-`files:show` | Shows the content of an file. Prefixed with the release_path. | No
+`yii/init:` | The initialisation enviromnent for Yii2 apps. In a default situation this can be 'Development' or 'Production'. | No
+`yii/overwrite:` | Overwrite all the files when perform a php init (can be 'All' | 'None') | No (All are overwritten)
+`files:upload-files` | Paths to files that needs to be uploaded to the remote server to the same location (paths are seen from project folder).  | No
+`files:show` | Shows the content of a file. Prefixed with the release_path. | No
 `migrate:rbac` | Migrates the RBAC functionality of Yii2. | No
 `migrate:db` | Migrates the 'normal' database migrations | No
-`sync:*` | Special feature for syncing remote files with for example an shared folder. That way developers can maintain shared files and sync them to the remote server, without loss of user created files. The uploads key is required when using this functionality, but only used for visual purpose. (rsync) | No
+`sync:*` | Special feature for syncing remote files with for example a shared folder. That way developers can maintain shared files and sync them to the remote server, without loss of user created files. The uploads key is required when using this functionality, but only used for visual purpose. (rsync) | No
 `sync:source` | Path to folder (from project root) | When using sync option -> Yes, else no.
 `sync:dest` | Destination path (from deploy path) | When using sync option -> Yes, else no.
-`sync:create_if_not_exists` | Create the destination folder if not exists. | No
+`sync:create_if_not_exists` | Create the destination folder if it doesn't exist. | No
 `shared` | Shared entities that need to be placed in the shared folder | No |
 
 
